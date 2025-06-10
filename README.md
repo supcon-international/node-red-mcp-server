@@ -61,9 +61,11 @@ node-red-mcp-server
 1. Start the MCP server or configure Claude Desktop to start it automatically with the tool configuration below.
 
 2. Configure Claude Desktop:
+
    - Open Claude Desktop app
    - Go to Settings → Advanced → Tool Configuration
    - Add a new tool configuration:
+
    ```json
    {
      "node-red": {
@@ -80,6 +82,7 @@ node-red-mcp-server
      }
    }
    ```
+
    - Replace `/path/to/node-red-mcp-server` with the actual path to your installation
    - Update `NODE_RED_URL` to point to your Node-RED instance
    - Set `NODE_RED_TOKEN` if your Node-RED instance requires authentication
@@ -91,12 +94,12 @@ For more information about the Model Context Protocol, visit the [official MCP d
 ### Programmatic Usage
 
 ```javascript
-import { createServer } from 'node-red-mcp-server';
+import { createServer } from "node-red-mcp-server";
 
 const server = createServer({
-  nodeRedUrl: 'http://localhost:1880',
-  nodeRedToken: 'YOUR_TOKEN',
-  verbose: true
+  nodeRedUrl: "http://localhost:1880",
+  nodeRedToken: "YOUR_TOKEN",
+  verbose: true,
 });
 
 await server.start();
@@ -106,18 +109,18 @@ await server.start();
 
 ### CLI Parameters
 
-| Parameter       | Short | Description                          |
-|----------------|-------|--------------------------------------|
-| `--url`        | `-u`  | Node-RED base URL                    |
-| `--token`      | `-t`  | API access token                     |
-| `--verbose`    | `-v`  | Enable verbose logging               |
-| `--help`       | `-h`  | Show help                            |
-| `--version`    | `-V`  | Show version number                  |
+| Parameter   | Short | Description            |
+| ----------- | ----- | ---------------------- |
+| `--url`     | `-u`  | Node-RED base URL      |
+| `--token`   | `-t`  | API access token       |
+| `--verbose` | `-v`  | Enable verbose logging |
+| `--help`    | `-h`  | Show help              |
+| `--version` | `-V`  | Show version number    |
 
 ### Environment Variables
 
-| Variable         | Description                    |
-|------------------|--------------------------------|
+| Variable         | Description                   |
+| ---------------- | ----------------------------- |
 | `NODE_RED_URL`   | URL of your Node-RED instance |
 | `NODE_RED_TOKEN` | API access token              |
 
@@ -137,10 +140,10 @@ await server.start();
 - `get-flows-formatted` — Get human-readable flow list
 - `visualize-flows` — Generate graph-like view of flows
 
-### Node Tools
+### Node Tools (Update get-nodes)
 
 - `inject` — Trigger an inject node
-- `get-nodes` — List available node types
+- `get-nodes` — List available node summary information (name help-doc module)
 - `get-node-info` — Detailed info about a node module
 - `toggle-node-module` — Enable/disable a node module
 - `find-nodes-by-type` — Locate nodes by type

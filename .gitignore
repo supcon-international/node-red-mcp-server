@@ -11,6 +11,8 @@ yarn.lock
 
 logs/
 *.log
-
+.vscode/
+.cursor/
 .DS_Store
 coverage/
+TODO.md
