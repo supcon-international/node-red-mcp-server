@@ -140,12 +140,15 @@ await server.start();
 - `get-flows-formatted` — Get human-readable flow list
 - `visualize-flows` — Generate graph-like view of flows
 
-### Node Tools (Update get-nodes)
+### Node Tools
 
 - `inject` — Trigger an inject node
-- `get-nodes` — List available node summary information (name help-doc module)
-- `get-node-info` — Detailed info about a node module
+- `get-available-nodes` — List available node summary information (name help-doc module)
+- `install-node-module` - install new node module
+- `get-node-detailed-info` — Detailed info about a node module
+- `get-node-set-detailed-info` - Detailed source code about a node module set
 - `toggle-node-module` — Enable/disable a node module
+- `toggle-node-module-set` - Enable/disable a node module set
 - `find-nodes-by-type` — Locate nodes by type
 - `search-nodes` — Find nodes by name or property
 
