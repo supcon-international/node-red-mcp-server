@@ -1,10 +1,12 @@
-[![npm version](https://img.shields.io/npm/v/node-red-mcp-server.svg)](https://www.npmjs.com/package/node-red-mcp-server)
-[![npm downloads](https://img.shields.io/npm/dm/node-red-mcp-server.svg)](https://www.npmjs.com/package/node-red-mcp-server)
-[![GitHub license](https://img.shields.io/github/license/karavaev-evgeniy/node-red-mcp-server.svg)](https://github.com/karavaev-evgeniy/node-red-mcp-server/blob/main/LICENSE)
+[![npm version](https://img.shields.io/npm/v/@supcon-international/node-red-mcp-server.svg)](https://www.npmjs.com/package/@supcon-international/node-red-mcp-server)
+[![npm downloads](https://img.shields.io/npm/dm/@supcon-international/node-red-mcp-server.svg)](https://www.npmjs.com/package/@supcon-international/node-red-mcp-server)
+[![GitHub license](https://img.shields.io/github/license/supcon-international/node-red-mcp-server.svg)](https://github.com/supcon-international/node-red-mcp-server/blob/main/LICENSE)
 
-# node-red-mcp-server
+# @supcon-international/node-red-mcp-server
 
 Model Context Protocol (MCP) server for Node-RED — allows language models (like Claude, GPT) to interact with Node-RED through a standardized API.
+
+> This is an enhanced version based on [karavaev-evgeniy/node-red-mcp-server](https://github.com/karavaev-evgeniy/node-red-mcp-server)
 
 ## Description
 
@@ -13,6 +15,10 @@ Model Context Protocol (MCP) server for Node-RED — allows language models (lik
 ### Key Features
 
 - Retrieve and update Node-RED flows via MCP
+- Add detailed argument descriptions for tools, making it better for LLM usage and handling complicated tasks
+- get available nodes information (name,help,module name) instead of raw code
+- install new node via llm
+- check module and node set module information and manage states
 - Manage tabs and individual nodes
 - Search for nodes by type or properties
 - Access settings and runtime state
@@ -24,13 +30,13 @@ Model Context Protocol (MCP) server for Node-RED — allows language models (lik
 ### Global Installation
 
 ```bash
-npm install -g node-red-mcp-server
+npm install -g @supcon-international/node-red-mcp-server
 ```
 
 ### Local Installation
 
 ```bash
-npm install node-red-mcp-server
+npm install @supcon-international/node-red-mcp-server
 ```
 
 ## Usage
@@ -38,7 +44,7 @@ npm install node-red-mcp-server
 ### Command Line
 
 ```bash
-node-red-mcp-server --url http://localhost:1880 --token YOUR_TOKEN
+node-red-mcp --url http://localhost:1880 --token YOUR_TOKEN
 ```
 
 ### Configuration via `.env`
@@ -53,7 +59,7 @@ NODE_RED_TOKEN=YOUR_TOKEN
 Then run:
 
 ```bash
-node-red-mcp-server
+node-red-mcp
 ```
 
 ### Integration with Claude or Other LLMs
@@ -66,26 +72,42 @@ node-red-mcp-server
    - Go to Settings → Advanced → Tool Configuration
    - Add a new tool configuration:
 
-   ```json
-   {
-     "node-red": {
-       "command": "node",
-       "args": [
-         "/path/to/node-red-mcp-server/bin/node-red-mcp-server.mjs",
-         "--verbose"
-       ],
-       "env": {
-         "NODE_RED_URL": "http://your-node-red-url:1880",
-         "NODE_RED_TOKEN": "your-token-if-needed",
-         "MCP_SERVER_PORT": "3000"
-       }
-     }
-   }
-   ```
+```json
+{
+  "node-red": {
+    "command": "npx",
+    "args": ["@supcon-international/node-red-mcp-server", "--verbose"],
+    "env": {
+      "NODE_RED_URL": "http://your-node-red-url:1880",
+      "NODE_RED_TOKEN": "your-token-if-needed",
+      "MCP_SERVER_PORT": "3000"
+    }
+  }
+}
+```
 
-   - Replace `/path/to/node-red-mcp-server` with the actual path to your installation
-   - Update `NODE_RED_URL` to point to your Node-RED instance
-   - Set `NODE_RED_TOKEN` if your Node-RED instance requires authentication
+or
+
+```json
+{
+  "node-red": {
+    "command": "node",
+    "args": [
+      "/path/to/node-red-mcp-server/bin/node-red-mcp-server.mjs",
+      "--verbose"
+    ],
+    "env": {
+      "NODE_RED_URL": "http://your-node-red-url:1880",
+      "NODE_RED_TOKEN": "your-token-if-needed",
+      "MCP_SERVER_PORT": "3000"
+    }
+  }
+}
+```
+
+- Replace `/path/to/node-red-mcp-server` with the actual path to your installation
+- Update `NODE_RED_URL` to point to your Node-RED instance
+- Set `NODE_RED_TOKEN` if your Node-RED instance requires authentication
 
 3. After configuration, Claude can interact with your Node-RED instance through the MCP tools.
 
@@ -169,8 +191,7 @@ await server.start();
 ## License
 
 MIT License
-
-Copyright (c) 2023
+Copyright (c) 2025
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

@@ -1,6 +1,6 @@
 {
-  "name": "node-red-mcp-server",
-  "version": "1.2.0",
+  "name": "@supcon-international/node-red-mcp-server",
+  "version": "1.2.1",
   "description": "Model Context Protocol (MCP) server for interacting with Node-RED",
   "license": "MIT",
   "main": "lib/server.mjs",
@@ -25,14 +25,15 @@
     "gpt"
   ],
   "author": "Evgeniy Karavaev <karavaev.evgeniy@gmail.com>",
+  "maintainers": "Zhou Xingyu <zhouxingyu@global.supcon.com>",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/karavaev-evgeniy/node-red-mcp-server.git"
+    "url": "git+https://github.com/supcon-international/node-red-mcp-server.git"
   },
   "bugs": {
-    "url": "https://github.com/karavaev-evgeniy/node-red-mcp-server/issues"
+    "url": "https://github.com/supcon-international/node-red-mcp-server.git/issues"
   },
-  "homepage": "https://github.com/karavaev-evgeniy/node-red-mcp-server#readme",
+  "homepage": "https://github.com/supcon-international/node-red-mcp-server.git#readme",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.11.0",
     "axios": "^1.9.0",
