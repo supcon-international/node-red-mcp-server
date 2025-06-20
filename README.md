@@ -10,9 +10,9 @@ Model Context Protocol (MCP) server for Node-RED — allows language models (lik
 
 ## Description
 
-`node-red-mcp-server` creates a bridge between language models and the Node-RED platform, providing tools to manage flows, nodes, and settings via the MCP (Model Context Protocol). This enables language models to automate and control Node-RED flows programmatically.
+`node-red-mcp-server` Node-RED-MCP-Server for handling complex Node-RED tasks autonomously
 
-### Key Features
+### Enhanced Key Features
 
 - Retrieve and update Node-RED flows via MCP
 - Add detailed argument descriptions for tools, making it better for LLM usage and handling complicated tasks
