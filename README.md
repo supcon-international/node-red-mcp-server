@@ -15,6 +15,7 @@ Model Context Protocol (MCP) server for Node-RED — allows language models (lik
 ### Enhanced Key Features
 
 - Retrieve and update Node-RED flows via MCP
+- Multi-version flow backup and restore system with integrity validation
 - Add detailed argument descriptions for tools, making it better for LLM usage and handling complicated tasks
 - get available nodes information (name,help,module name) instead of raw code
 - install new node via llm
@@ -54,6 +55,8 @@ Create a `.env` file:
 ```
 NODE_RED_URL=http://localhost:1880
 NODE_RED_TOKEN=YOUR_TOKEN
+MCP_BACKUP_PATH=/custom/backup/path
+MCP_MAX_BACKUPS=10
 ```
 
 Then run:
@@ -77,10 +80,11 @@ node-red-mcp
   "node-red": {
     "command": "npx",
     "args": ["@supcon-international/node-red-mcp-server", "--verbose"],
-    "env": {
+    "env(Optional,if None then use default value)": {
       "NODE_RED_URL": "http://your-node-red-url:1880",
       "NODE_RED_TOKEN": "your-token-if-needed",
-      "MCP_SERVER_PORT": "3000"
+      "MCP_BACKUP_PATH": "/custom/backup/path",
+      "MCP_MAX_BACKUPS": "10"
     }
   }
 }
@@ -96,10 +100,11 @@ or
       "/path/to/node-red-mcp-server/bin/node-red-mcp-server.mjs",
       "--verbose"
     ],
-    "env": {
+    "env(Optional,if None then use default value)": {
       "NODE_RED_URL": "http://your-node-red-url:1880",
       "NODE_RED_TOKEN": "your-token-if-needed",
-      "MCP_SERVER_PORT": "3000"
+      "MCP_BACKUP_PATH": "/custom/backup/path",
+      "MCP_MAX_BACKUPS": "10"
     }
   }
 }
@@ -131,20 +136,24 @@ await server.start();
 
 ### CLI Parameters
 
-| Parameter   | Short | Description            |
-| ----------- | ----- | ---------------------- |
-| `--url`     | `-u`  | Node-RED base URL      |
-| `--token`   | `-t`  | API access token       |
-| `--verbose` | `-v`  | Enable verbose logging |
-| `--help`    | `-h`  | Show help              |
-| `--version` | `-V`  | Show version number    |
+| Parameter       | Short | Description                                     |
+| --------------- | ----- | ----------------------------------------------- |
+| `--url`         | `-u`  | Node-RED base URL                               |
+| `--token`       | `-t`  | API access token                                |
+| `--verbose`     | `-v`  | Enable verbose logging                          |
+| `--backup-path` |       | Custom backup directory path                    |
+| `--max-backups` |       | Maximum number of backups to keep (default: 10) |
+| `--help`        | `-h`  | Show help                                       |
+| `--version`     | `-V`  | Show version number                             |
 
 ### Environment Variables
 
-| Variable         | Description                   |
-| ---------------- | ----------------------------- |
-| `NODE_RED_URL`   | URL of your Node-RED instance |
-| `NODE_RED_TOKEN` | API access token              |
+| Variable          | Description                       |
+| ----------------- | --------------------------------- |
+| `NODE_RED_URL`    | URL of your Node-RED instance     |
+| `NODE_RED_TOKEN`  | API access token                  |
+| `MCP_BACKUP_PATH` | Custom backup directory path      |
+| `MCP_MAX_BACKUPS` | Maximum number of backups to keep |
 
 ## MCP Tools
 
@@ -173,6 +182,13 @@ await server.start();
 - `toggle-node-module-set` - Enable/disable a node module set
 - `find-nodes-by-type` — Locate nodes by type
 - `search-nodes` — Find nodes by name or property
+
+### Backup Tools
+
+- `backup-flows` — Create a named backup of current flows with optional reason
+- `restore-flows` — Restore flows from a specific backup with safety confirmation
+- `list-backups` — List all available flow backups with details
+- `backup-health` — Check backup system health and provide recommendations
 
 ### Settings Tools
 
