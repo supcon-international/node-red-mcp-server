@@ -188,6 +188,7 @@ await server.start();
 - `backup-flows` — Create a named backup of current flows with optional reason
 - `restore-flows` — Restore flows from a specific backup with safety confirmation
 - `list-backups` — List all available flow backups with details
+- `get-backup-flows` — Get the specific flows content from a backup by name
 - `backup-health` — Check backup system health and provide recommendations
 
 ### Settings Tools
