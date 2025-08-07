@@ -15,7 +15,7 @@ Model Context Protocol (MCP) server for Node-RED — allows language models (lik
 ### Enhanced Key Features
 
 - Retrieve and update Node-RED flows via MCP
-- Multi-version flow backup and restore system with integrity validation
+- Multi-version flow backup system with integrity validation
 - Add detailed argument descriptions for tools, making it better for LLM usage and handling complicated tasks
 - get available nodes information (name,help,module name) instead of raw code
 - install new node via llm
@@ -186,7 +186,6 @@ await server.start();
 ### Backup Tools
 
 - `backup-flows` — Create a named backup of current flows with optional reason
-- `restore-flows` — Restore flows from a specific backup with safety confirmation
 - `list-backups` — List all available flow backups with details
 - `get-backup-flows` — Get the specific flows content from a backup by name
 - `backup-health` — Check backup system health and provide recommendations
