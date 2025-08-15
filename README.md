@@ -55,7 +55,7 @@ Create a `.env` file:
 ```
 NODE_RED_URL=http://localhost:1880
 NODE_RED_TOKEN=YOUR_TOKEN
-NODE_HTTP_API_PREFIX=/api/v1  # Optional: API path prefix (e.g., /nodered-api /eventflow-api)
+NODE_MCP_PREFIX=/api/v1  # Optional: API path prefix (e.g., /nodered-api /eventflow-api)
 MCP_BACKUP_PATH=/custom/backup/path
 MCP_MAX_BACKUPS=10
 ```
@@ -84,7 +84,7 @@ node-red-mcp
     "env(Optional,if None then use default value)": {
       "NODE_RED_URL": "http://your-node-red-url:1880",
       "NODE_RED_TOKEN": "your-token-if-needed",
-      "NODE_HTTP_API_PREFIX": "/nodered-api",
+      "NODE_MCP_PREFIX": "/nodered-api",
       "MCP_BACKUP_PATH": "/custom/backup/path",
       "MCP_MAX_BACKUPS": "10"
     }
@@ -105,7 +105,7 @@ or
     "env(Optional,if None then use default value)": {
       "NODE_RED_URL": "http://your-node-red-url:1880",
       "NODE_RED_TOKEN": "your-token-if-needed",
-      "NODE_HTTP_API_PREFIX": "/nodered-api",
+      "NODE_MCP_PREFIX": "/nodered-api",
       "MCP_BACKUP_PATH": "/custom/backup/path",
       "MCP_MAX_BACKUPS": "10"
     }
@@ -116,7 +116,7 @@ or
 - Replace `/path/to/node-red-mcp-server` with the actual path to your installation
 - Update `NODE_RED_URL` to point to your Node-RED instance
 - Set `NODE_RED_TOKEN` if your Node-RED instance requires authentication
-- Set `NODE_HTTP_API_PREFIX` if your Node-RED API is behind a reverse proxy or requires a path prefix (e.g., `/nodered-api`, `/eventflow-api`). If not set, it defaults to the standard Node-RED API paths
+- Set `NODE_MCP_PREFIX` if your Node-RED API is behind a reverse proxy or requires a path prefix (e.g., `/nodered-api`, `/eventflow-api`). If not set, it defaults to the standard Node-RED API paths
 
 3. After configuration, Claude can interact with your Node-RED instance through the MCP tools.
 
@@ -158,6 +158,7 @@ await server.start();
 | `NODE_RED_TOKEN`  | API access token                  |
 | `MCP_BACKUP_PATH` | Custom backup directory path      |
 | `MCP_MAX_BACKUPS` | Maximum number of backups to keep |
+| `NODE_MCP_PREFIX` | API path prefix for reverse proxy |
 
 ## MCP Tools
 

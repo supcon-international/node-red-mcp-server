@@ -25,8 +25,10 @@ const options = {
   verbose: false,
   backup: {
     backupPath: process.env.MCP_BACKUP_PATH,
-    maxBackups: process.env.MCP_MAX_BACKUPS ? parseInt(process.env.MCP_MAX_BACKUPS) : undefined,
-  }
+    maxBackups: process.env.MCP_MAX_BACKUPS
+      ? parseInt(process.env.MCP_MAX_BACKUPS)
+      : undefined,
+  },
 };
 
 // Process arguments
@@ -63,6 +65,7 @@ Environment Variables:
   NODE_RED_TOKEN           API access token  
   MCP_BACKUP_PATH          Custom backup directory path
   MCP_MAX_BACKUPS          Maximum number of backups to keep
+  NODE_MCP_PREFIX          MCP server prefix
 `);
     process.exit(0);
   } else if (arg === "--version" || arg === "-V") {
